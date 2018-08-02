@@ -143,8 +143,8 @@ GrayImage=mat2gray(meanim); %% Turn into a greyscale with vals [0 1]
 % GrayImage=imadjust(GrayImage,[0 1],[0 1],0.75); %% increase contrast
 % figure,imagesc(GrayImage),colormap gray,colorbar
 Thresh=graythresh(GrayImage); %% Otsu thresholding
-binmap=im2bw(GrayImage,Thresh); %% Give binary image
-binmap=imclearborder(binmap); %% Remove particles from edges
+prelimbinmap=im2bw(GrayImage,Thresh); %% Give binary image
+binmap=imclearborder(prelimbinmap); %% Remove particles from edges
 % SE = strel('disk', 1, 0);
 % figure,imagesc(binmap)
 % binmap = bwareaopen(binmap,3);
@@ -206,8 +206,9 @@ carbmask=medfilt2(carbmask);
 %% Inorganic Map
 prepost=stack(:,:,preidx)./stack(:,:,postidx);
 pre=stack(:,:,preidx);
-% figure,imagesc(pre),colormap gray,colorbar
-Noise=std(pre(binmap==0));
+% figure,imagesc(pre.*binmap),colormap gray,colorbar
+% figure,imagesc(binmap),colormap gray, colorbar
+Noise=std(pre(prelimbinmap==0));
 pre1=pre;
 pre1(pre1<3*Noise)=0;
 premask=pre1;
