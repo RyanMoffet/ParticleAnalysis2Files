@@ -1,0 +1,120 @@
+<deployment-project plugin="plugin.apptool" plugin-version="1.0">
+  <configuration build-checksum="1005168557" file="C:\Users\rmoffet\Dropbox\Code\ParticleAnalysis2Files\ParticleAnalysis2Files\ParticleAnalysis2.prj" location="C:\Users\rmoffet\Dropbox\Code\ParticleAnalysis2Files\ParticleAnalysis2Files" name="ParticleAnalysis2" target="target.mlapps" target-name="Package App">
+    <param.appname>ParticleAnalysis2</param.appname>
+    <param.authnamewatermark />
+    <param.email />
+    <param.company />
+    <param.icon />
+    <param.icons />
+    <param.summary />
+    <param.description />
+    <param.screenshot />
+    <param.version>1.0</param.version>
+    <param.products.name />
+    <param.products.id />
+    <param.products.version />
+    <param.platforms />
+    <param.output>C:\Users\rmoffet\Dropbox\Code\ParticleAnalysis2Files\ParticleAnalysis2Files</param.output>
+    <param.guid>9da8657d-5e57-4624-aea0-46f2a1675704</param.guid>
+    <unset>
+      <param.authnamewatermark />
+      <param.email />
+      <param.company />
+      <param.icon />
+      <param.icons />
+      <param.summary />
+      <param.description />
+      <param.screenshot />
+      <param.version />
+      <param.products.name />
+      <param.products.id />
+      <param.products.version />
+      <param.platforms />
+      <param.output />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\ParticleAnalysis2.mlapp</file>
+    </fileset.main>
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}\AlignStack.m</file>
+      <file>${PROJECT_ROOT}\CarbonMaps.m</file>
+      <file>${PROJECT_ROOT}\ChemSiz.m</file>
+      <file>${PROJECT_ROOT}\ComponentSpecSVD.m</file>
+      <file>${PROJECT_ROOT}\ConstThresh.m</file>
+      <file>${PROJECT_ROOT}\CropPart.m</file>
+      <file>${PROJECT_ROOT}\CropPartRGBPlot.m</file>
+      <file>${PROJECT_ROOT}\DeglitchStack.m</file>
+      <file>${PROJECT_ROOT}\dftregistration.m</file>
+      <file>${PROJECT_ROOT}\Diffmaps.m</file>
+      <file>${PROJECT_ROOT}\DirLabelMapsGUI.mlapp</file>
+      <file>${PROJECT_ROOT}\DirLabelMapsStruct.m</file>
+      <file>${PROJECT_ROOT}\DistCent.m</file>
+      <file>${PROJECT_ROOT}\FTMatrixShift.m</file>
+      <file>${PROJECT_ROOT}\InorgMap1.m</file>
+      <file>${PROJECT_ROOT}\inpoly.m</file>
+      <file>${PROJECT_ROOT}\LabelCount.m</file>
+      <file>${PROJECT_ROOT}\LoadImageRawGui.m</file>
+      <file>${PROJECT_ROOT}\LoadStackRaw.m</file>
+      <file>${PROJECT_ROOT}\MapRadialScanSpline.m</file>
+      <file>${PROJECT_ROOT}\MultPartAvSpec.m</file>
+      <file>${PROJECT_ROOT}\OdStack.m</file>
+      <file>${PROJECT_ROOT}\ParticleSize.m</file>
+      <file>${PROJECT_ROOT}\PartLabelCompSize.m</file>
+      <file>${PROJECT_ROOT}\PeakDetect.m</file>
+      <file>${PROJECT_ROOT}\plotSvdRgbNew.m</file>
+      <file>${PROJECT_ROOT}\raw2mask.m</file>
+      <file>${PROJECT_ROOT}\ReadHdr.m</file>
+      <file>${PROJECT_ROOT}\RemoveBadParticles.m</file>
+      <file>${PROJECT_ROOT}\SingStackProcGUI.m</file>
+      <file>${PROJECT_ROOT}\SootCarboxMap.m</file>
+      <file>${PROJECT_ROOT}\SootCarboxSizeHist.m</file>
+      <file>${PROJECT_ROOT}\STACKLab.fig</file>
+      <file>${PROJECT_ROOT}\STACKLab.m</file>
+      <file>${PROJECT_ROOT}\stackSVD.m</file>
+      <file>${PROJECT_ROOT}\SumRad.m</file>
+      <file>${PROJECT_ROOT}\uipickfiles.m</file>
+      <file>C:\Users\rmoffet\Dropbox\Code\RyansSTXMScripts-master\altmany-export_fig-f0af704\altmany-export_fig-f0af704\copyfig.m</file>
+      <file>C:\Users\rmoffet\Dropbox\Code\RyansSTXMScripts-master\altmany-export_fig-f0af704\altmany-export_fig-f0af704\crop_borders.m</file>
+      <file>C:\Users\rmoffet\Dropbox\Code\RyansSTXMScripts-master\altmany-export_fig-f0af704\altmany-export_fig-f0af704\eps2pdf.m</file>
+      <file>C:\Users\rmoffet\Dropbox\Code\RyansSTXMScripts-master\altmany-export_fig-f0af704\altmany-export_fig-f0af704\export_fig.m</file>
+      <file>C:\Users\rmoffet\Dropbox\Code\RyansSTXMScripts-master\altmany-export_fig-f0af704\altmany-export_fig-f0af704\fix_lines.m</file>
+      <file>C:\Users\rmoffet\Dropbox\Code\RyansSTXMScripts-master\altmany-export_fig-f0af704\altmany-export_fig-f0af704\ghostscript.m</file>
+      <file>C:\Users\rmoffet\Dropbox\Code\RyansSTXMScripts-master\altmany-export_fig-f0af704\altmany-export_fig-f0af704\isolate_axes.m</file>
+      <file>C:\Users\rmoffet\Dropbox\Code\RyansSTXMScripts-master\altmany-export_fig-f0af704\altmany-export_fig-f0af704\pdf2eps.m</file>
+      <file>C:\Users\rmoffet\Dropbox\Code\RyansSTXMScripts-master\altmany-export_fig-f0af704\altmany-export_fig-f0af704\pdftops.m</file>
+      <file>C:\Users\rmoffet\Dropbox\Code\RyansSTXMScripts-master\altmany-export_fig-f0af704\altmany-export_fig-f0af704\print2array.m</file>
+      <file>C:\Users\rmoffet\Dropbox\Code\RyansSTXMScripts-master\altmany-export_fig-f0af704\altmany-export_fig-f0af704\print2eps.m</file>
+      <file>C:\Users\rmoffet\Dropbox\Code\RyansSTXMScripts-master\altmany-export_fig-f0af704\altmany-export_fig-f0af704\read_write_entire_textfile.m</file>
+      <file>C:\Users\rmoffet\Dropbox\Code\RyansSTXMScripts-master\altmany-export_fig-f0af704\altmany-export_fig-f0af704\user_string.m</file>
+      <file>C:\Users\rmoffet\Dropbox\Code\RyansSTXMScripts-master\altmany-export_fig-f0af704\altmany-export_fig-f0af704\using_hg2.m</file>
+      <file>C:\Users\rmoffet\Dropbox\Ryan_LBL\Matlab\STXMNew\MapsCarbon\DirLabelOrgVolFrac.m</file>
+      <file>C:\Users\rmoffet\Dropbox\Ryan_LBL\Matlab\STXMNew\max_inscribed_circle_STXM.m</file>
+      <file>C:\Users\rmoffet\Dropbox\Ryan_LBL\Matlab\STXMNew\PreToPostRatioVolFrac.m</file>
+    </fileset.depfun>
+    <fileset.resources />
+    <fileset.package />
+    <build-deliverables>
+      <file location="C:\Users\rmoffet\Dropbox\Code\ParticleAnalysis2Files" name="ParticleAnalysis2Files" optional="false">C:\Users\rmoffet\Dropbox\Code\ParticleAnalysis2Files\ParticleAnalysis2Files</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2016b</root>
+      <toolboxes />
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>6.1</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>

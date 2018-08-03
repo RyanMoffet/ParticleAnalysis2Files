@@ -46,8 +46,9 @@ function [DirLabelS]=DirLabelMapsStruct(InDir,sample,saveflg,savepath,sp2,impar)
 %%           original image? [XLength,YLength,Xpoints,Ypoints]
 %%         PartDirs: cell array of directories original data can be found in
 %%         PartSN: cell array of particle serial numbers.
-%%         VolFrac: individual particle volume fraction calculated using the DirLabelOrgVolFrac.m script
-%% OCT 2009, RCMoffet, update 7/7/2016 RCMoffet, added VolFrac 1/9/17 RCMoffet
+%%         VolFrac, vector of volume fractions from DirLabelOrgVolFrac
+%%         ThickMap, matrix of thickness maps for ThickMap(:,:,[organic, inorganic, soot, volfrac] 
+%% OCT 2009, RCMoffet, update 7/7/2016 RCMoffet
 
 startingdir=dir;
 LabelCnt=zeros(4,length(InDir));
@@ -69,18 +70,19 @@ for j=1:length(InDir)  %% loop over different sample directories
     TotalCarbon{j}=[];% OD of total carbon (OD(320)-OD(278))
     Carbox{j}=[];
     Sp2{j}=[];
-%     SootDistCent{j}=[];% relative distance of the soot inclusion from the particle center
-%     SootDistCentInscribed{j}=[];
-%     SootEcc{j}=[];% eccentricity of the soot inclusion
-%     SootMaj{j}=[];% major axis of soot inclusion
-%     SootMin{j}=[];% minor axis of the soot inclusion
-%     SootCvex{j}=[];% convexity of the soot inclusion
-%     SootArea{j}=[];% 
+    SootDistCent{j}=[];% relative distance of the soot inclusion from the particle center
+    SootDistCentInscribed{j}=[];
+    SootEcc{j}=[];% eccentricity of the soot inclusion
+    SootMaj{j}=[];% major axis of soot inclusion
+    SootMin{j}=[];% minor axis of the soot inclusion
+    SootCvex{j}=[];% convexity of the soot inclusion
+    SootArea{j}=[];% 
     CroppedParts{j}=[]; % Cropped RGB Images of particles
     ImageProps{j}=[]; % image properties: [Xvalue,Yvalue,# of X pixels,# of Y pixels]
     PartDirs{j,:}=[];
     PartSN{j}=[];
     VolFrac{j}=[];
+%     ThickMap{j}=[];
     %% loop over stacks
     for l=1:length(directory)
         ind=strfind(directory(l).name,'.mat');
@@ -131,6 +133,8 @@ for j=1:length(InDir)  %% loop over different sample directories
             %% Do radial scans
             [AvgRadClass{loopctr},AvgStdClass{loopctr},npart{loopctr},SingRadScans{loopctr}]=...
                 MapRadialScanSpline(Sinp,1,0);
+            %% Do organic volume fractions
+            Sinp=DirLabelOrgVolFrac(Sinp);
             %% Crop particle comp maps
             Sinp=CropPart(Sinp,0,impar); % can change last input to 'RGB' for CompMaps
             close
@@ -140,12 +144,10 @@ for j=1:length(InDir)  %% loop over different sample directories
                     disp(sprintf('%s%s%s IS GIVING EMPTY RGBs!!',InDir{j},'\',directory(l).name));
                 end
             end
-            %% Give Labels and size for plotting chemical size distributions as
+            %% Give Labels and size for plotting chemical size distributionsas
             [class,siz]=ChemSiz(Sinp);
             %% Get image size 
             imsiz=size(Sinp.LabelMat);
-            %% Calculate single particle volume fractions
-            Sinp=DirLabelOrgVolFrac(Sinp)
             %% Append data from previous .mat files
             PartSize{j}=[PartSize{j},siz];
             label{j}=[label{j},class];
@@ -154,13 +156,13 @@ for j=1:length(InDir)  %% loop over different sample directories
             TotalCarbon{j}=[TotalCarbon{j},Sinp.AvTotC]; %% height of total carbon/particle
             Carbox{j}=[Carbox{j},Sinp.AvCarbox]; %% this is the height of the carbox peak/particle
             Sp2{j}=[Sp2{j},Sinp.AvSp2]; %% This is the height of the Sp2 peak/particle
-%             SootDistCent{j}=[SootDistCent{j},Sinp.SootDistCent];
-%             SootDistCentInscribed{j}=[SootDistCentInscribed{j},Sinp.SootDistCentInscribed];
-%             SootEcc{j}=[SootEcc{j};Sinp.SootEccentricity];
-%             SootMaj{j}=[SootMaj{j};Sinp.SootMajorAxisLength];
-%             SootMin{j}=[SootMin{j};Sinp.SootMinorAxisLength];
-%             SootCvex{j}=[SootCvex{j};Sinp.SootConvexArea];
-%             SootArea{j}=[SootArea{j};Sinp.SootArea];
+            SootDistCent{j}=[SootDistCent{j},Sinp.SootDistCent];
+            SootDistCentInscribed{j}=[SootDistCentInscribed{j},Sinp.SootDistCentInscribed];
+            SootEcc{j}=[SootEcc{j};Sinp.SootEccentricity];
+            SootMaj{j}=[SootMaj{j};Sinp.SootMajorAxisLength];
+            SootMin{j}=[SootMin{j};Sinp.SootMinorAxisLength];
+            SootCvex{j}=[SootCvex{j};Sinp.SootConvexArea];
+            SootArea{j}=[SootArea{j};Sinp.SootArea];
             CroppedParts{j}=[CroppedParts{j};Sinp.CroppedParts];
             OutRad{j}=[];RadStd{j}={};SingRad{j}={};
             [OutRad{j},RadStd{j},SingRad{j}]=SumRad(AvgRadClass,AvgStdClass,npart,SingRadScans);
@@ -168,6 +170,7 @@ for j=1:length(InDir)  %% loop over different sample directories
             PartDirs{j}=[PartDirs{j};Sinp.PartDirs];
             PartSN{j}=[PartSN{j};Sinp.PartSN];
             VolFrac{j}=[VolFrac{j};Sinp.VolFrac];
+%             ThickMap{j}=[ThickMap{j};Sinp.ThickMap];
             %%     figure,boxplot(SingRad{j}{4}','plotstyle','compact')
             %%     figure,errorbar([1:11],OutRad{j}(:,4),RadStd{j}(:,4))
             %%     OutRad=NaN;
@@ -198,18 +201,20 @@ DirLabelS.Sp2=Sp2;
 DirLabelS.OutRad=OutRad; % radial scans: for each particle, a matrix of radial scans of [pre/
 DirLabelS.RadStd=RadStd;
 DirLabelS.SingRad=SingRad;
-% DirLabelS.SootDistCent=SootDistCent;
-% DirLabelS.SootDistCentInscribed=SootDistCentInscribed;
-% DirLabelS.SootEcc=SootEcc;
-% DirLabelS.SootMaj=SootMaj;
-% DirLabelS.SootMin=SootMin;
-% DirLabelS.SootCvex=SootCvex;
-% DirLabelS.SootArea=SootArea;
+DirLabelS.SootDistCent=SootDistCent;
+DirLabelS.SootDistCentInscribed=SootDistCentInscribed;
+DirLabelS.SootEcc=SootEcc;
+DirLabelS.SootMaj=SootMaj;
+DirLabelS.SootMin=SootMin;
+DirLabelS.SootCvex=SootCvex;
+DirLabelS.SootArea=SootArea;
 DirLabelS.CroppedParts=CroppedParts; %% Extract data by calling like this: DirLabelS.CroppedParts{1}{1}
 DirLabelS.ImageProps=ImageProps;
 DirLabelS.PartDirs=PartDirs;
 DirLabelS.PartSN=PartSN;
 DirLabelS.VolFrac=VolFrac;
+% DirLabelS.ThickMap;
+
 return
 
 

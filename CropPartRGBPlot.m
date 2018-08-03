@@ -12,8 +12,8 @@ n=length(RGBIn);
 msize=ceil(sqrt(n));
 figsiz=1;
 scrsz=get(0,'ScreenSize');
-figure('units','normalized','position',[0,0,figsiz.*scrsz(4)/scrsz(4),figsiz.*scrsz(3)/scrsz(4)]);
-% figure('units','normalized','position',[0,0,1,1]);
+% figure('units','normalized','position',[0,0,figsiz.*scrsz(4)/scrsz(4),figsiz.*scrsz(3)/scrsz(4)]);
+figure%('units','normalized','position',[0,0,1,1]);
 set(gcf, 'color', 'k');
 % set(gca, 'color', 'k');
 %% loop over directories and store x and y dimensions in matrices x and y
